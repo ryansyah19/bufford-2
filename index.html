@@ -23,6 +23,8 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+				
+				
         
     </head>
     <body>
@@ -107,8 +109,8 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-sm-12 col-md-6 intro">
-									<img src="images/thumbnails/bufford2.png" width="441" height="648" class="img-responsive gambar">
-									<img src="images/thumbnails/bufford1.png" width="440" height="537" class="img-responsive gambar2">
+										<img src="images/thumbnails/bufford1.png"  width="440" height="537" class="gambar" id="images"/>  
+										<img src="images/thumbnails/bufford2.png"  width="440" height="648" class="gambar2" id="images2"/>  
 								</div>
 								<div class="col-sm-12 col-md-6 up">
 									<h1 class="title">A Warm</h1>
@@ -682,10 +684,10 @@
         <!-- Javascript -->
         <script type="text/javascript" src="vendor/jquery.3.2.1/jquery.3.2.1.min.js"></script>
         <script type="text/javascript" src="vendor/bootstrap.3.3.7/js/bootstrap.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/owl.carousel.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+				<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
         <script type="text/javascript">
             $('.owl-carousel').owlCarousel({
               loop: true,
@@ -714,6 +716,41 @@
                 }
               }
             });
+			
+			
+					$(document).ready(function(){
+								var currentImage = $("#images");
+								setInterval(function(){
+										currentImage.fadeOut();
+										currentImage.fadeIn();
+										$('.gambar').attr('src');
+										
+										if($('.gambar').attr('src') == "images/thumbnails/bufford1.png"){
+											$(".gambar").attr("src","images/thumbnails/bufford2.png");
+										}
+										else{
+											$(".gambar").attr("src","images/thumbnails/bufford1.png");
+										}
+										
+									console.log($('.gambar').attr('src'));
+								}, 10000)
+								
+								var currentImage2 = $("#images2");
+								
+								setInterval(function(){
+										currentImage2.fadeOut();
+										currentImage2.fadeIn();
+									$('.gambar2').attr('src');
+									console.log($('.gambar2').attr('src'));
+										
+										if($('.gambar2').attr('src') == "images/thumbnails/bufford2.png"){
+											$(".gambar2").attr("src","images/thumbnails/bufford1.png");
+										}
+										else{
+											$(".gambar2").attr("src","images/thumbnails/bufford2.png");
+										}
+								}, 10000)
+						});
 			
 			$('#myModal').on('shown.bs.modal', function () {
 			  $('#myInput').focus()
@@ -747,46 +784,48 @@
               });
 
               function initialise() {
-		var myLatlng = new google.maps.LatLng(34.036826, -83.953412); // Add the coordinates
-		var mapOptions = {
-			zoom: 16, // The initial zoom level when your map loads (0-20)
-			minZoom: 6, // Minimum zoom level allowed (0-20)
-			maxZoom: 17, // Maximum soom level allowed (0-20)
-			zoomControl:true, // Set to true if using zoomControlOptions below, or false to remove all zoom controls.
-			zoomControlOptions: {
-  				style:google.maps.ZoomControlStyle.DEFAULT // Change to SMALL to force just the + and - buttons.
-			},
-			center: myLatlng, // Centre the Map to our coordinates variable
-			mapTypeId: google.maps.MapTypeId.ROADMAP, // Set the type of Map
-			scrollwheel: false, // Disable Mouse Scroll zooming (Essential for responsive sites!)
-			// All of the below are set to true by default, so simply remove if set to true:
-			panControl:false, // Set to false to disable
-			mapTypeControl:false, // Disable Map/Satellite switch
-			scaleControl:false, // Set to false to hide scale
-			streetViewControl:false, // Set to disable to hide street view
-			overviewMapControl:false, // Set to false to remove overview control
-			rotateControl:false // Set to false to disable rotate control
-	  	}
-		var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions); // Render our map within the empty div
-		var image = new google.maps.MarkerImage("images/icons/ICON.png", null, null, null, new google.maps.Size(56,93)); // Create a variable for our marker image.
-		var marker = new google.maps.Marker({ // Set the marker
-			position: myLatlng, // Position marker to coordinates
-			icon:image, //use our image as the marker
-			map: map, // assign the market to our map variable
-			title: 'Click here for more details' // Marker ALT Text
-		});
-		// 	google.maps.event.addListener(marker, 'click', function() { // Add a Click Listener to our marker
-		//		window.location='http://www.snowdonrailway.co.uk/shop_and_cafe.php'; // URL to Link Marker to (i.e Google Places Listing)
-		// 	});
-		var infowindow = new google.maps.InfoWindow({ // Create a new InfoWindow
-  			content:"This is <strong>Buford Dental</strong>" // HTML contents of the InfoWindow
-  		});
-		google.maps.event.addListener(marker, 'click', function() { // Add a Click Listener to our marker
-  			infowindow.open(map,marker); // Open our InfoWindow
-  		});
-		google.maps.event.addDomListener(window, 'resize', function() { map.setCenter(myLatlng); }); // Keeps the Pin Central when resizing the browser on responsive sites
-	}
-	google.maps.event.addDomListener(window, 'load', initialise); // Execute our 'initialise' function once the page has loaded.
+							var myLatlng = new google.maps.LatLng(34.036826, -83.953412); // Add the coordinates
+							var mapOptions = {
+								zoom: 16, // The initial zoom level when your map loads (0-20)
+								minZoom: 6, // Minimum zoom level allowed (0-20)
+								maxZoom: 17, // Maximum soom level allowed (0-20)
+								zoomControl:true, // Set to true if using zoomControlOptions below, or false to remove all zoom controls.
+								zoomControlOptions: {
+										style:google.maps.ZoomControlStyle.DEFAULT // Change to SMALL to force just the + and - buttons.
+								},
+								center: myLatlng, // Centre the Map to our coordinates variable
+								mapTypeId: google.maps.MapTypeId.ROADMAP, // Set the type of Map
+								scrollwheel: false, // Disable Mouse Scroll zooming (Essential for responsive sites!)
+								// All of the below are set to true by default, so simply remove if set to true:
+								panControl:false, // Set to false to disable
+								mapTypeControl:false, // Disable Map/Satellite switch
+								scaleControl:false, // Set to false to hide scale
+								streetViewControl:false, // Set to disable to hide street view
+								overviewMapControl:false, // Set to false to remove overview control
+								rotateControl:false // Set to false to disable rotate control
+								}
+							var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions); // Render our map within the empty div
+							var image = new google.maps.MarkerImage("images/icons/ICON.png", null, null, null, new google.maps.Size(56,93)); // Create a variable for our marker image.
+							var marker = new google.maps.Marker({ // Set the marker
+								position: myLatlng, // Position marker to coordinates
+								icon:image, //use our image as the marker
+								map: map, // assign the market to our map variable
+								title: 'Click here for more details' // Marker ALT Text
+							});
+							// 	google.maps.event.addListener(marker, 'click', function() { // Add a Click Listener to our marker
+							//		window.location='http://www.snowdonrailway.co.uk/shop_and_cafe.php'; // URL to Link Marker to (i.e Google Places Listing)
+							// 	});
+							var infowindow = new google.maps.InfoWindow({ // Create a new InfoWindow
+									content:"This is <strong>Buford Dental</strong>" // HTML contents of the InfoWindow
+								});
+							google.maps.event.addListener(marker, 'click', function() { // Add a Click Listener to our marker
+									infowindow.open(map,marker); // Open our InfoWindow
+								});
+							google.maps.event.addDomListener(window, 'resize', function() { map.setCenter(myLatlng); }); // Keeps the Pin Central when resizing the browser on responsive sites
+						}
+						google.maps.event.addDomListener(window, 'load', initialise); // Execute our 'initialise' function once the page has loaded.
+	
+					
           </script>
     </body>
 </html>

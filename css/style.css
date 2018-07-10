@@ -780,19 +780,10 @@ footer{
 	background-size: cover;
 	padding:60px;
 }
-.gambar{
-		animation: fadeIn 2s infinite alternate;
-}
-.gambar2 {
+.gambar {
     position: absolute;
     top: 100px;
     left: 175px;
-    width: 65%;
-		animation: fadeOut 4s infinite alternate;
-}
-@keyframes fadeIn { 
-  from { opacity: 0; } 
-}
-@keyframes fadeOut { 
-  from { opacity: 0; } 
+    width: 65%;	
+		z-index:1;
 }
